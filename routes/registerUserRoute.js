@@ -29,10 +29,22 @@ router.get('/:id', async (req, res) => {
     try{
 
         const userDetails = await UserRegister.findOne({user_name:req.params.id});
-        res.status(200).json({
-            status:"Success",
-            message:"exists"
-        })
+
+        if(userDetails)
+        {
+            res.status(200).json({
+                status:"Success",
+                message:"exists"
+            })
+        }
+        else
+        {
+            res.status(200).json({
+                status:"Success",
+                message:"user does not exist"
+            })
+        }
+        
         
 
     }
