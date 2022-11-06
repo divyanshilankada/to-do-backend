@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
     res.send("login Route");
 })
 
-router.post('/', async (req, res) => {
+router.get('/', async (req, res) => {
 
 
     try{
@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
                         res.status(200).json({
                             status:"Success",
                             message:"Login Successful",
-                            token
+                            token: token
                         });
                     }
                     else
