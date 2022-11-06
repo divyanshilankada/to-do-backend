@@ -1,0 +1,99 @@
+const express = require("express");
+const router = express.Router();
+const bcrypt = require('bcrypt');
+const UserRegister = require('../models/registerUserModel');
+
+router.get('/', async (req, res) => {
+
+    try{
+
+        const userDetails = await UserRegister.find();
+        res.status(200).json({
+            status:"Success",
+            message:userDetails
+        })
+        
+
+    }
+    catch(e){
+        res.status(401).json({ 
+            status:"Failed",
+            message:e.message
+        });
+    }
+
+});
+
+
+
+router.post('/', async (req, res) => {
+
+    try{
+
+        bcrypt.hash(req.body.password, 10, async function(err, hash) {
+        // Store hash in your password DB.
+            if(err)
+            {
+                return res.status(400).json({status:"Error", message:err.message});
+            }
+            else
+            {
+
+                const userDetails = await UserRegister.findOne({user_name:req.body.user_name});
+
+                if(userDetails)
+                {
+                    return res.status(400).json({status:"Error", message:"User name already exists"});
+                }
+
+                const UserRegistrationDetails = await UserRegister.create({
+                    user_name : req.body.user_name,
+                    password : hash
+                });
+
+
+                res.status(200).json({
+                    status:"Success",
+                    message:UserRegistrationDetails
+                });
+
+            }
+        });
+         
+    }
+    catch(e){
+        res.status(401).json({ 
+            status:"Failed",
+            message:e.message
+        });
+    }
+
+});
+
+
+// router.delete('/:id', async (req, res) => {
+
+//     try{
+//         // UserOrderModel.deleteOne({_id:req.params.id}).then((result)=>{
+//         //     res.status(200).json(result)
+//         //   }).catch((err)=>{console.warn(err)});
+
+//           const message = await UserOrderModel.deleteOne({_id:req.params.id});
+
+//             res.status(200).json({
+//                 status:"Success",
+//                 message:message,
+                
+//             });
+//     }
+//     catch(e){
+
+//         res.status(401).json({ 
+//             status:"Failed",
+//             message:e.message
+//         });
+//     }
+// });
+
+
+module.exports = router;
