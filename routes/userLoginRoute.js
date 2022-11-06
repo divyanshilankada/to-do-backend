@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
     res.send("login Route");
 })
 
-router.get('/', async (req, res) => {
+router.post('/', async (req, res) => {
 
 
     try{
