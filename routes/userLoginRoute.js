@@ -34,6 +34,7 @@ router.post('/', async (req, res) => {
                         res.status(200).json({
                             status:"Success",
                             message:"Login Successful",
+                            name:userCheck.user_name,
                             token: token
                         });
                     }
