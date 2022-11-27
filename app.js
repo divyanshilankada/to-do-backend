@@ -17,7 +17,7 @@ const UserActivityRoute = require('./routes/userActivityRoute');
 app.use(bodyParser());
 app.use("/register", UserRegisterRoute);
 app.use("/login", UserLoginRoute);
-app.use("/activity", UserLoginRoute);
+app.use("/activity", UserActivityRoute);
 
 
 module.exports = app;
