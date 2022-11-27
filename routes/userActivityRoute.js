@@ -8,7 +8,7 @@ router.get('/', validateToken,async (req, res) => {
 
     try{
 
-        const userActivities = await UserActivity.findOne({user:req.user});
+        const userActivities = await UserActivity.find({user:req.user});
         res.status(200).json({
             status:"Success",
             message:userActivities
