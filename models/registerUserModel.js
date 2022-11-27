@@ -4,11 +4,11 @@ const UserRegisterSchema = new mongoose.Schema({
 
     user_name : {
         type:String,
-        reuqired : true
+        required : true
     },
     password : {
         type:String,
-        reuqired : true
+        required : true
     },
    
 

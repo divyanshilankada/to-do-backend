@@ -6,6 +6,8 @@ app.use(cors());
 
 const UserRegisterRoute = require('./routes/registerUserRoute');
 const UserLoginRoute = require('./routes/userLoginRoute');
+const UserActivityRoute = require('./routes/userActivityRoute');
+
 
 
 
@@ -15,6 +17,7 @@ const UserLoginRoute = require('./routes/userLoginRoute');
 app.use(bodyParser());
 app.use("/register", UserRegisterRoute);
 app.use("/login", UserLoginRoute);
+app.use("/activity", UserLoginRoute);
 
 
 module.exports = app;
