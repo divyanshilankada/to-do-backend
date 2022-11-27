@@ -2,13 +2,9 @@ const mongoose=require('mongoose');
 
 const UserRegisterSchema = new mongoose.Schema({
 
-    user_name : {
-        type:String,
-    },
-    password : {
-        type:String,
-    },
-   
+    user_name : String,
+    password : String
+    
 
 }, { timestamps: true })
 

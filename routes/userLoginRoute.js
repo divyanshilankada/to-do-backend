@@ -19,7 +19,10 @@ router.post('/', async (req, res) => {
         if(req.body.password && req.body.user_name)
         {
             const userCheck = await UserRegister.findOne({user_name:req.body.user_name});
-
+            if(req.body.password === userCheck.password)
+            {
+                console.log(req.body, userCheck);
+            }
             if(userCheck)
             {
                 bcrypt.compare(req.body.password, userCheck.password).then(function(result) { 

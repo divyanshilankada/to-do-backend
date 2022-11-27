@@ -61,6 +61,7 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
 
+    console.log(req.body);
     try{
 
         bcrypt.hash(req.body.password, 10, async function(err, hash) {
