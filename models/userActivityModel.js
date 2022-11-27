@@ -12,7 +12,7 @@ const UserActivitySchema = new mongoose.Schema({
     sort:Number,
     user:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"UserRegisterModel",
+        ref:"userRegisterModel",
         required:true
     }
    

@@ -5,7 +5,8 @@ const jwt = require('jsonwebtoken');
 const UserRegister = require('../models/registerUserModel');
 const bcrypt = require('bcrypt');
 
-const secret = "lamda";
+const secret = process.env.SECRET;
+//console.log(secret, "jjj");
 
 router.get('/', (req, res) => {
     res.send("login Route");
@@ -31,7 +32,7 @@ router.post('/', async (req, res) => {
                     {
                         const token = jwt.sign({
                             exp: Math.floor(Date.now() / 1000) + (60 * 60),
-                            data: userCheck.user_name
+                            data: userCheck._id
                           }, secret);
                           
                         res.status(200).json({

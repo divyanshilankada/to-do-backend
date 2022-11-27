@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const { validateToken } = require("../middlewares/middleware");
 
 const UserActivity = require('../models/userActivityModel');
 
-router.get('/', async (req, res) => {
+router.get('/', validateToken,async (req, res) => {
 
     try{
 
@@ -25,15 +26,19 @@ router.get('/', async (req, res) => {
 });
 
 
-router.post('/', async (req, res) => {
+router.post('/', validateToken,async (req, res) => {
 
     try{
 
-       console.log(req.body);
+        //let token = req.headers['authorization'];
+
+        //jwt.veri
+        console.log(req.user);
+
         const activity = await UserActivity.create({
             activity:req.body.activity,
             status:req.body.status,
-            user:req.user,
+            user:req.user
         });
 
         res.status(200).json({
