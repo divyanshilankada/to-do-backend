@@ -8,8 +8,7 @@ const UserActivitySchema = new mongoose.Schema({
     status : {
         type:String,
     },
-    time:String,
-    sort:Number,
+    time:{type:Number},
     user:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"userRegisterModel",

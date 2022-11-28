@@ -38,6 +38,7 @@ router.post('/', validateToken,async (req, res) => {
         const activity = await UserActivity.create({
             activity:req.body.activity,
             status:req.body.status,
+            time:req.body.time,
             user:req.user
         });
 
