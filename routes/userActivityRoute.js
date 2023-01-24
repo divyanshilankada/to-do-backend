@@ -59,4 +59,32 @@ router.post('/', validateToken,async (req, res) => {
 });
 
 
+router.put('/', validateToken,async (req, res) => {
+
+    try{
+
+        //let token = req.headers['authorization'];
+
+        //jwt.veri
+        console.log(req.body);
+
+        const activity = await UserActivity.updateOne({_id:req.body.id},{time:req.body.time, status:req.body.status});
+
+        res.status(200).json({
+            status:"Success",
+            message:activity
+        });
+                
+
+    }
+    catch(e){
+        res.status(401).json({ 
+            status:"Failed",
+            message:e.message
+        });
+    }
+
+});
+
+
 module.exports = router;
